@@ -67,7 +67,7 @@ const PLACES = {
 };
 const DESTS = {
     usme: {
-        name: 'Portal de Usme', addr: 'Av Carrera 14 #64 Sur', rating: 3.9, icon: '🚌',
+        name: 'Portal de Usme', addr: 'Av Carrera 14 #64 Sur', rating: 3.9, icon: '<img src="./icons/directions_bus.svg"></img>',
         tags: {
             visual: [['No hay guías podotáctiles', 'warn'], ['Percepción de inseguridad', 'warn']],
             auditiva: [['Falta de información en LSC', 'bad'], ['Percepción de inseguridad', 'warn']],
@@ -78,7 +78,7 @@ const DESTS = {
         coords: [4.5320, -74.1196]
     },
     unal: {
-        name: 'Universidad Nacional', addr: 'Cra 45 #26-85', rating: 4.7, icon: '🎓',
+        name: 'Universidad Nacional', addr: 'Cra 45 #26-85', rating: 4.7, icon: '<img src="./icons/school.svg"></img>',
         tags: {
             visual: [['Información en braile', 'ok'], ['Guías podotáctiles', 'ok']],
             auditiva: [['Información en LSC', 'ok'], ['Personal amable', 'ok']],
@@ -88,7 +88,7 @@ const DESTS = {
         coords: [4.6365, -74.0829]
     },
     tunal: {
-        name: 'Hospital El Tunal', addr: 'Carrera 20 N° 47B 35 Sur', rating: 3.7, icon: '⛑',
+        name: 'Hospital El Tunal', addr: 'Carrera 20 N° 47B 35 Sur', rating: 3.7, icon: '<img src="./icons/local_hospital.svg"></img>',
         tags: {
             visual: [['Percepción de inseguridad', 'warn'], ['Personal amable', 'ok']],
             auditiva: [['Percepción de inseguridad', 'warn'], ['Trato hostil', 'bad']],
@@ -109,7 +109,7 @@ const DESTS = {
         
     },
     concentrix: {
-        name: 'Concentrix Empresarial', addr: 'Cl 93 #11A-11', rating: 3.6, icon: '💼',
+        name: 'Concentrix Empresarial', addr: 'Cl 93 #11A-11', rating: 3.6, icon: '<img src="./icons/enterprise.svg"></img>',
         tags: {
             visual: [['No hay información en braile', 'bad'], ['Personal amable', 'ok']],
             auditiva: [['Personal amable', 'ok'], ['Información en LSC', 'ok']],
@@ -119,7 +119,7 @@ const DESTS = {
         coords: [4.6748, -74.0484]
     },
     oro: {
-        name: 'Museo del Oro', addr: 'Cra. 6 #15-88', rating: 4.2, icon: '🏛',
+        name: 'Museo del Oro', addr: 'Cra. 6 #15-88', rating: 4.2, icon: '<img src="./icons/museum.svg"></img>',
         tags: {
             visual: [['Información en braile', 'ok'], ['Personal amable', 'ok']],
             auditiva: [['Información en LSC', 'ok'], ['Percepción de inseguridad', 'warn']],
