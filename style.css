@@ -201,8 +201,18 @@ h3,
 }
 
 .card:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, .08)
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px var(--primary-d);
+    background-color: var(--primary-d);
+    color: var(--paper);
+}
+
+.card:hover .name, .card:hover .addr, .card:hover .rating {
+    color: var(--paper);
+}
+
+.card:hover .icon-mask {
+    background-color: var(--paper);
 }
 
 .card.selected {
