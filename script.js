@@ -468,10 +468,10 @@ function navigationScreen() {
     el.innerHTML = `
     <div class="field"><div class="icon-mask" style="--icon:url('./icons/my_location.svg')"></div>${oName}</div>
     <div class="field"><div class="icon-mask" style="--icon:url('./icons/flag.svg')"></div> ${dName}</div>
-    <div><b>Salida: ${oName}</b><p style="font-size:.78rem;color:#666;margin:2px 0">${ROUTE.steps[0][1]}</p></div>
+    <div style="color:var(--primary-d);"><b>Salida: ${oName}</b><p style="font-size:.78rem;color:#666;margin:2px 0">${ROUTE.steps[0][1]}</p></div>
     <div id="leafletNavMap"></div>
     <div>⏱ Est. llegada: 4:01 p.m.</div>
-    <b>Alertas y reportes</b>
+    <b style="color:var(--primary-d);">Alertas y reportes</b>
     ${alerts.map(([h, t]) => `<div class="alert"><b>${h}</b>${t}</div>`).join('')}`;
         speak(`Recorrido iniciado. Estas son las alertas cercanas: ${alerts[0][1]}`);
 
