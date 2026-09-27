@@ -89,7 +89,7 @@ h3,
 }
 
 .mode-pill {
-    border: 4px solid var(--primary);
+    border: 5px solid var(--primary);
     color: var(--primary-d);
     font-family: 'Stinger', sans-serif;
     font-weight: 900;
