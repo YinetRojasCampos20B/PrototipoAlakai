@@ -198,7 +198,9 @@ function renderTopbar() {
 /* ---------- PANTALLAS ---------- */
 function placeCard(id, place, forOrigin) {
     const tags = place.tags[S.mode].map(([t, c]) => `<span class="tag ${c}">${t}</span>`).join('');
-    return `<div class="card" data-id="${id}">
+    const selectedId = isOrigin ? S.origin : S.destination;
+    const isSelected = id == selectedId;
+    return `<div class="card ${isSelected ? 'selected' : ''}" data-id="${id}">
     <div class="icon">${place.icon}</div>
     <div class="info">
         <div class="name">${place.name} <span class="rating"><div class="icon-mask" style="--icon:url('./icons/star.svg')"> </div> ${place.rating}</span></div>
@@ -252,8 +254,7 @@ function placeListScreen(kind) {
     el.innerHTML = `
     <h1 class="title">¿${isOrigin ? 'Desde dónde vas a iniciar' : 'Cuál será el punto de destino'} tu recorrido?</h1>
     <div class="searchbox"><div class="icon-mask" style="--icon: url('./icons/search.svg')"></div><input placeholder="Busca tu ${isOrigin ? 'inicio' : 'destino'}"></div>
-    ${isOrigin ? '<div class="field" id="useMyLocation" style="cursor:pointer"><img id="myLocation" src="./icons/my_location.svg"></img> Usar mi ubicación precisa</div>' : ''}
-    ${Object.entries(source).map(([id, p]) => placeCard(id, p)).join('')}
+    ${isOrigin ? `<div class="field ${S.origin === 'custom' ? 'selected' : ''}" id="useMyLocation" style="cursor:pointer"><img id="myLocation" src="./icons/my_location.svg"></img> Usar mi ubicación precisa</div>` : ''}    ${Object.entries(source).map(([id, p]) => placeCard(id, p, isOrigin)).join('')}
     <button class="btn" id="continueBtn">${isOrigin ? 'Seguir con el punto de destino' : 'Trazar rutas disponibles'}</button>`;
         el.querySelectorAll('.card').forEach(c => c.onclick = () => {
             S.comingFrom = kind;
@@ -272,6 +273,21 @@ function placeListScreen(kind) {
     const locBtn = document.getElementById('useMyLocation');
     if (locBtn) locBtn.onclick = getMyPreciseLocation;
     if (isOrigin) speak('¿Desde dónde vas a iniciar tu recorrido?'); else speak('¿Cuál será el punto de destino?');
+}
+
+function placeCard(id, place, isOrigin) {
+    const tags = place.tags[S.mode].map(([t, c]) => `<span class="tag ${c}">${t}</span>`).join('');
+    const selectedId = isOrigin ? S.origin : S.destination;
+    const isSelected = id === selectedId;
+    return `<div class="card ${isSelected ? 'selected' : ''}" data-id="${id}">
+    <div class="icon">${place.icon}</div>
+    <div class="info">
+        <div class="name">${place.name} <span class="rating"><div class="icon-mask" style="--icon:url('./icons/star.svg')"> </div> ${place.rating}</span></div>
+        <div class="addr">${place.addr}</div>
+        <div class="tags">${tags}</div>
+    </div>
+    <div class="more-details">＋</div>
+    </div>`;
 }
 
 function placeDetailScreen() {
