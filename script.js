@@ -176,8 +176,8 @@ let navMapInstance = null;
 
 function go(screen, announce) {
     S.history.push(screen);
+    S.pendingAnnounce = announce || '';
     render(screen);
-    if (announce) speak(announce);
 }
 
 function goBack() {
