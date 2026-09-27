@@ -375,31 +375,41 @@ function routeTracedScreen() {
     document.getElementById('startBtn').onclick = () => go('navigation', 'Iniciando recorrido. Te guiaré durante todo el trayecto.');
     const body = document.getElementById('routeBody');
     if (S.routeView === 'map') {
-    body.innerHTML = `<div id="leafletMap"></div>
-    <div class="stat3">
-    <div class="stat"><b>${ROUTE.distance}</b><span>Distancia</span></div>
-    <div class="stat"><b>${ROUTE.time}</b><span>Tiempo</span></div>
-    <div class="stat"><b>${ROUTE.elev}</b><span>Elevación</span></div>
-    </div>`;
-    setTimeout(() => {
-        const origin = originCoords();
-        const dest = DESTS[S.destination] ? DESTS[S.destination].coords : [4.4770, -74.1265];
-        const profileMap = { bicicleta: 'bike', tm: 'driving', caminata: 'foot' };
-        if (routeMapInstance) { routeMapInstance.remove(); routeMapInstance = null; }
-        routeMapInstance = L.map('leafletMap').setView(origin, 14);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap'
-        }).addTo(routeMapInstance);
-        L.Routing.control({
-            waypoints: [L.latLng(...origin), L.latLng(...dest)],
-            lineOptions: { styles: [{ color: 'var(--primary-d)', weight: 5 }] },
-            router: L.Routing.osrmv1({ profile: profileMap[S.transport] || 'foot' }),
-            routeWhileDragging: false,
-            addWaypoints: false,
-            show: false
-        }).addTo(routeMapInstance);
-    }, 0);
-}
+        body.innerHTML = `<div id="leafletMap"></div>
+        <div class="stat3">
+        <div class="stat"><b>${ROUTE.distance}</b><span>Distancia</span></div>
+        <div class="stat"><b>${ROUTE.time}</b><span>Tiempo</span></div>
+        <div class="stat"><b>${ROUTE.elev}</b><span>Elevación</span></div>
+        </div>`;
+        setTimeout(() => {
+            const origin = originCoords();
+            const dest = DESTS[S.destination] ? DESTS[S.destination].coords : [4.4770, -74.1265];
+            const profileMap = { bicicleta: 'bike', tm: 'driving', caminata: 'foot' };
+            if (routeMapInstance) { routeMapInstance.remove(); routeMapInstance = null; }
+            routeMapInstance = L.map('leafletMap').setView(origin, 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap'
+            }).addTo(routeMapInstance);
+            L.Routing.control({
+                waypoints: [L.latLng(...origin), L.latLng(...dest)],
+                lineOptions: { styles: [{ color: 'var(--primary-d)', weight: 5 }] },
+                router: L.Routing.osrmv1({ profile: profileMap[S.transport] || 'foot' }),
+                routeWhileDragging: false,
+                addWaypoints: false,
+                show: false
+            }).addTo(routeMapInstance);
+        }, 0);
+    } else {
+        body.innerHTML = `
+        <div class="stat3">
+        <div class="stat"><b>${ROUTE.distance}</b><span>Distancia</span></div>
+        <div class="stat"><b>${ROUTE.time}</b><span>Tiempo</span></div>
+        <div class="stat"><b>${ROUTE.elev}</b><span>Elevación</span></div>
+        </div>
+        <div class="steplist">${ROUTE.steps.map((s, i) => `
+        <div class="step"><div><div class="dot"></div>${i < ROUTE.steps.length - 1 ? '<div class="line"></div>' : ''}</div>
+        <div class="txt"><b>${s[0]}</b><p>${s[1]}</p></div></div>`).join('')}</div>`;
+    }
     speak(`Ruta de ${oName} a ${dName}. Distancia ${ROUTE.distance}, tiempo estimado ${ROUTE.time}.`);
 }
 

@@ -449,6 +449,7 @@ h3,
 }
 
 .steplist {
+    color: var(--primary);
     display: flex;
     flex-direction: column;
     gap: 2px
