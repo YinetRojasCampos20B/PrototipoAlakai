@@ -148,7 +148,7 @@ h3,
 
 .field {
     border: 2.5px solid var(--primary);
-    border-radius: 999px;
+    border-radius: 100px;
     padding: 12px 16px;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
@@ -298,7 +298,7 @@ h3,
     font-size: .65rem;
     font-weight: 700;
     padding: 2px 8px;
-    border-radius: 999px
+    border-radius: 100px;
 }
 
 .tag.bad {
@@ -363,7 +363,7 @@ h3,
     flex: 1;
     text-align: center;
     padding: 8px 4px;
-    border-radius: 999px;
+    border-radius: 100px;
     border: 2px solid var(--primary);
     font-weight: 700;
     font-size: .78rem;
@@ -609,7 +609,7 @@ h3,
 
 .modebtn {
     border: none;
-    border-radius: 999px;
+    border-radius: 100px;
     padding: 16px 18px;
     display: flex;
     align-items: center;
