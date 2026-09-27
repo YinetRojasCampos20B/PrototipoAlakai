@@ -189,6 +189,11 @@ h3,
     font: inherit
 }
 
+.searchbox .icon-mask {
+    width: 20px;
+    height: 20px;
+}
+
 .card {
     border: 2.5px solid var(--primary);
     border-radius: 50px;
