@@ -251,7 +251,7 @@ function screenWelcome() {
 function chooseMode(m) {
     setMode(m);
     S.origin = null; S.destination = null;
-    go('searchOrigin', `Modo de discapacidad ${m} activado. ¿Desde dónde vas a iniciar tu recorrido?`);
+    go('searchOrigin', `Modo de discapacidad ${m} activado.`);
 }
 
 
@@ -275,7 +275,7 @@ function placeListScreen(kind) {
     document.getElementById('continueBtn').onclick = () => {
         if (isOrigin) {
             if (!S.origin) S.origin = Object.keys(PLACES)[0];
-            go('searchDestination', '¿Cuál será el punto de destino?');
+            go('searchDestination');
         } else {
             if (!S.destination) S.destination = Object.keys(DESTS)[0];
             go('routeTraced', 'Esta es la ruta trazada.');
@@ -364,7 +364,7 @@ function getMyPreciseLocation() {
                 ? `Ubicación encontrada con un margen de error de ${Math.round(accuracy)} metros.`
                 : `Ubicación encontrada, pero con un margen de error de ${Math.round(accuracy)} metros, mayor al esperado.`;
             speak(msg);
-            go('searchDestination', '¿Cuál será el punto de destino?');
+            go('searchDestination');
         },
         (err) => {
             speak('No fue posible obtener tu ubicación. Revisa los permisos del navegador.');
