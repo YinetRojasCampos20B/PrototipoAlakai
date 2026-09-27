@@ -181,6 +181,7 @@ h3,
 }
 
 .searchbox input {
+    color: var(--primary-d);
     border: none;
     outline: none;
     flex: 1;

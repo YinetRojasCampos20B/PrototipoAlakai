@@ -3,6 +3,7 @@ const S = {
     mode: null, voiceOn: true, origin: null, destination: null,
     transport: 'bicicleta', routeView: 'map', selectedPlace: null, comingFrom: 'origin'
 };
+
 const MODE_META = {
     visual: { label: 'Modo de discapacidad visual', icon: `<div class="icon-mask" style="--icon: url('./icons/visibility_off.svg')"></div>`, color: '--visual', colorD: '--visual-d' },
     auditiva: { label: 'Modo de discapacidad auditiva', icon: `<div class="icon-mask" style="--icon: url('./icons/hearing_disabled.svg')"></div>`, color: '--auditiva', colorD: '--auditiva-d' },
