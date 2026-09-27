@@ -452,7 +452,7 @@ h3,
     color: var(--primary);
     display: flex;
     flex-direction: column;
-    gap: 2px
+    padding: 20px 20px 0 20px;
 }
 
 .step {
