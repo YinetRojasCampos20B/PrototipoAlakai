@@ -234,7 +234,7 @@ function placeListScreen(kind) {
     const el = document.getElementById('screen');
     el.innerHTML = `
     <h1 class="title">¿${isOrigin ? 'Desde dónde vas a iniciar' : 'Cuál será el punto de destino'} tu recorrido?</h1>
-    <div class="searchbox">🔍<input placeholder="Busca tu ${isOrigin ? 'inicio' : 'destino'}"></div>
+    <div class="searchbox"><div class="icon-mask" style="--icon: url('./icons/search.svg')"></div><input placeholder="Busca tu ${isOrigin ? 'inicio' : 'destino'}"></div>
     ${isOrigin ? '<div class="field"><img id="myLocation" src="./icons/my_location.svg"></img> Usar mi ubicación precisa</div>' : ''}
     ${Object.entries(source).map(([id, p]) => placeCard(id, p)).join('')}
     <button class="btn" id="continueBtn">${isOrigin ? 'Seguir con el punto de destino' : 'Trazar rutas disponibles'}</button>`;
