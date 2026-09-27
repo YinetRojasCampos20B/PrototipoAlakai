@@ -162,6 +162,14 @@ function speak(text) {
     } catch (e) { }
 }
 
+function announcePlaces(source, intro) {
+    const items = Object.values(source).map((p, i) =>
+        `${i + 1}. ${p.name}. ${p.tags[S.mode].map(t => t[0]).join('. ')}.`
+    ).join(' ');
+    speak(`${intro} ${items}`);
+}
+
+
 S.history = [];
 let routeMapInstance = null;
 let navMapInstance = null;
@@ -218,7 +226,7 @@ function screenWelcome() {
     const el = document.getElementById('screen');
     el.innerHTML = `
     <img id="logo" src="./img/logoAlakai.png" alt="Logo de Alakai">
-    <h1 class="title">¡BIENVENIDO!</h1>
+    <h1 class="title" id="welcome-title">¡BIENVENIDO!</h1>
     <div class="sub">Selecciona tu modo:</div>
     <button class="modebtn" id="btnDiscVisual" style="background:var(--visual)" data-mode="visual"><span class="ico"><img src="/icons/visibility_off.svg" alt="Ojo indicando discapacidad visual"></span>Discapacidad visual</button>
     <button class="modebtn" id="btnDiscAuditiva" style="background:var(--auditiva)" data-mode="auditiva"><span class="ico"><img src="/icons/hearing_disabled.svg" alt="Oreja indicando discapacidad auditiva"></span>Discapacidad auditiva</button>
@@ -272,7 +280,8 @@ function placeListScreen(kind) {
     };
     const locBtn = document.getElementById('useMyLocation');
     if (locBtn) locBtn.onclick = getMyPreciseLocation;
-    if (isOrigin) speak('¿Desde dónde vas a iniciar tu recorrido?'); else speak('¿Cuál será el punto de destino?');
+    const intro = isOrigin ? '¿Desde dónde vas a iniciar tu recorrido? Estas son tus opciones:' : '¿Cuál será el punto de destino? Estas son tus opciones:';
+    announcePlaces(source, intro);
 }
 
 function placeCard(id, place, isOrigin) {

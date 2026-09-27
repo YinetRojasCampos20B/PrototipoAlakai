@@ -125,12 +125,17 @@ h3,
 }
 
 .title {
-    color: var(--fisica);
+    color: var(--accent);
     font-family: 'Poppins', sans-serif;
     font-size: 1.35rem;
     text-align: center;
     margin: 4px 0 2px;
     line-height: 1.2
+}
+
+
+#welcome-title {
+    color: var(--fisica);
 }
 
 .sub {
