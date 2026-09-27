@@ -59,6 +59,7 @@ h3,
 
 .topbar {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
     padding: 16px 16px 6px;
@@ -484,7 +485,6 @@ h3,
 }
 
 .back {
-    align-self: flex-start;
     background: none;
     border: none;
     color: var(--primary-d);

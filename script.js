@@ -146,9 +146,19 @@ function speak(text) {
         window.speechSynthesis.speak(u);
     } catch (e) { }
 }
+
+S.history = [];
+
 function go(screen, announce) {
+    S.history.push(screen);
     render(screen);
     if (announce) speak(announce);
+}
+
+function goBack() {
+    S.history.pop();
+    const prev = S.history.pop();
+    if (prev) go(prev);
 }
 
 /* ---------- RENDERIZADO DE LA BARRA SUPERIOR ---------- */
@@ -156,9 +166,11 @@ function renderTopbar() {
     const bar = document.getElementById('topbar');
     if (!S.mode) { bar.innerHTML = ''; return; }
     const meta = MODE_META[S.mode];
-    bar.innerHTML = `
-<button class="speaker ${S.voiceOn ? '' : 'muted'}" id="speakerBtn" title="Guía de voz">${S.voiceOn ? '<img src="./icons/volume_up.svg"></img>' : '<img src="./icons/volume_off.svg"></img>'}</button>
-<div class="mode-pill">${meta.icon} ${meta.label}</div>`;
+    bar.innerHTML = `${S.history.length > 1 ? `<button class="back" id="backBtn"><div class="icon-mask" style="--icon: url('./icons/arrow_back_ios.svg')"></div></button>` : ''}
+    <button class="speaker ${S.voiceOn ? '' : 'muted'}" id="speakerBtn" title="Guía de voz">${S.voiceOn ? '<img src="./icons/volume_up.svg"></img>' : '<img src="./icons/volume_off.svg"></img>'}</button>
+    <div class="mode-pill">${meta.icon} ${meta.label}</div>`;
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) backBtn.onclick = goBack;
     document.getElementById('speakerBtn').onclick = () => {
         S.voiceOn = !S.voiceOn;
         if (!S.voiceOn) window.speechSynthesis.cancel();
@@ -215,24 +227,22 @@ function chooseMode(m) {
 }
 
 
-function placeListScreen(kind) { // kind: 'origin' | 'destination'
+function placeListScreen(kind) {
     const isOrigin = kind === 'origin';
     const source = isOrigin ? PLACES : DESTS;
     renderTopbar();
     const el = document.getElementById('screen');
     el.innerHTML = `
-<button class="back" id="backBtn"><div class="icon-mask" style="--icon: url('./icons/arrow_back_ios.svg')"></div></button>
-<h1 class="title">¿${isOrigin ? 'Desde dónde vas a iniciar' : 'Cuál será el punto de destino'} tu recorrido?</h1>
-<div class="searchbox">🔍<input placeholder="Busca tu ${isOrigin ? 'inicio' : 'destino'}"></div>
-${isOrigin ? '<div class="field"><img id="myLocation" src="./icons/my_location.svg"></img> Usar mi ubicación precisa</div>' : ''}
-${Object.entries(source).map(([id, p]) => placeCard(id, p)).join('')}
-<button class="btn" id="continueBtn">${isOrigin ? 'Seguir con el punto de destino' : 'Trazar rutas disponibles'}</button>`;
-    el.querySelectorAll('.card').forEach(c => c.onclick = () => {
-        S.comingFrom = kind;
-        S.selectedPlace = c.dataset.id;
-        go('placeDetail', `Detalles de ${source[c.dataset.id].name}`);
-    });
-    document.getElementById('backBtn').onclick = () => isOrigin ? go('welcome') : go('placeDetail', null, S.comingFrom = 'origin');
+    <h1 class="title">¿${isOrigin ? 'Desde dónde vas a iniciar' : 'Cuál será el punto de destino'} tu recorrido?</h1>
+    <div class="searchbox">🔍<input placeholder="Busca tu ${isOrigin ? 'inicio' : 'destino'}"></div>
+    ${isOrigin ? '<div class="field"><img id="myLocation" src="./icons/my_location.svg"></img> Usar mi ubicación precisa</div>' : ''}
+    ${Object.entries(source).map(([id, p]) => placeCard(id, p)).join('')}
+    <button class="btn" id="continueBtn">${isOrigin ? 'Seguir con el punto de destino' : 'Trazar rutas disponibles'}</button>`;
+        el.querySelectorAll('.card').forEach(c => c.onclick = () => {
+            S.comingFrom = kind;
+            S.selectedPlace = c.dataset.id;
+            go('placeDetail', `Detalles de ${source[c.dataset.id].name}`);
+        });
     document.getElementById('continueBtn').onclick = () => {
         if (isOrigin) {
             if (!S.origin) S.origin = Object.keys(PLACES)[0];
@@ -253,7 +263,6 @@ function placeDetailScreen() {
     const el = document.getElementById('screen');
     const tags = p.tags[S.mode].map(([t, c]) => `<span class="tag ${c}">${t}</span>`).join('');
     el.innerHTML = `
-        <button class="back" id="backBtn"><div class="icon-mask" style="--icon: url('./icons/arrow_back_ios.svg')"></div></button>
         <div class="field" style="justify-content:space-between">
             <span>📍 ${p.name} <span class="rating">★ ${p.rating}</span></span>
         </div>
@@ -265,7 +274,6 @@ function placeDetailScreen() {
         <div class="searchbox"><input placeholder="Escribe un reporte de este lugar..."> ➤</div>
         ${p.reviews.map(([t, d, r]) => `<div class="review"><b>${t} <span class="rating">★ ${r}</span></b><p>${d}</p></div>`).join('')}
         <button class="btn" id="setBtn">Establecer punto de ${isOrigin ? 'inicio' : 'destino'}</button>`;
-            document.getElementById('backBtn').onclick = () => go(isOrigin ? 'searchOrigin' : 'searchDestination');
             document.getElementById('setBtn').onclick = () => {
                 if (isOrigin) { S.origin = S.selectedPlace; go('searchOrigin', `${p.name} establecido como punto de inicio.`); }
                 else { S.destination = S.selectedPlace; go('searchDestination', `${p.name} establecido como destino.`); }
@@ -281,21 +289,19 @@ function routeTracedScreen() {
     const tabs = ['bicicleta', 'tm', 'caminata'];
     const labels = { bicicleta: '🚲 Bicicleta', tm: '🚇 TM/SITP', caminata: '🚶 Caminata' };
     el.innerHTML = `
-<button class="back" id="backBtn"><div class="icon-mask" style="--icon: url('./icons/arrow_back_ios.svg')"></div></button>
-<h1 class="title">Esta es la ruta trazada:</h1>
-<div class="field">⌖ ${oName}</div>
-<div class="field">🚩 ${dName}</div>
-<div class="tabs">${tabs.map(t => `<div class="tab ${S.transport === t ? 'active' : ''}" data-t="${t}">${labels[t]}</div>`).join('')}</div>
-<div style="display:flex;justify-content:space-between;align-items:center">
-    <b>Detalles de la ruta</b>
-    <div class="tabs" style="width:auto">
-    <div class="tab ${S.routeView === 'map' ? 'active' : ''}" data-v="map" style="flex:none;padding:6px 10px">🗺</div>
-    <div class="tab ${S.routeView === 'list' ? 'active' : ''}" data-v="list" style="flex:none;padding:6px 10px">≡</div>
+    <h1 class="title">Esta es la ruta trazada:</h1>
+    <div class="field">⌖ ${oName}</div>
+    <div class="field">🚩 ${dName}</div>
+    <div class="tabs">${tabs.map(t => `<div class="tab ${S.transport === t ? 'active' : ''}" data-t="${t}">${labels[t]}</div>`).join('')}</div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+        <b>Detalles de la ruta</b>
+        <div class="tabs" style="width:auto">
+        <div class="tab ${S.routeView === 'map' ? 'active' : ''}" data-v="map" style="flex:none;padding:6px 10px">🗺</div>
+        <div class="tab ${S.routeView === 'list' ? 'active' : ''}" data-v="list" style="flex:none;padding:6px 10px">≡</div>
+        </div>
     </div>
-</div>
-<div id="routeBody"></div>
-<button class="btn" id="startBtn">▶ Iniciar recorrido</button>`;
-    document.getElementById('backBtn').onclick = () => go('searchDestination');
+    <div id="routeBody"></div>
+    <button class="btn" id="startBtn">▶ Iniciar recorrido</button>`;
     el.querySelectorAll('[data-t]').forEach(t => t.onclick = () => { S.transport = t.dataset.t; routeTracedScreen(); });
     el.querySelectorAll('[data-v]').forEach(t => t.onclick = () => { S.routeView = t.dataset.v; routeTracedScreen(); });
     document.getElementById('startBtn').onclick = () => go('navigation', 'Iniciando recorrido. Te guiaré durante todo el trayecto.');
@@ -339,7 +345,6 @@ function navigationScreen() {
     const dName = DESTS[S.destination] ? DESTS[S.destination].name : 'Portal de Usme';
     const alerts = S.mode === 'fisica' ? ALERTS_FISICA : ALERTS_VISUAL;
     el.innerHTML = `
-    <button class="back" id="backBtn"><div class="icon-mask" style="--icon: url('./icons/arrow_back_ios.svg')"></div></button>
     <div class="field">⌖ ${oName}</div>
     <div class="field">🚩 ${dName}</div>
     <div><b>Salida: ${oName}</b><p style="font-size:.78rem;color:#666;margin:2px 0">${ROUTE.steps[0][1]}</p></div>
@@ -352,7 +357,6 @@ function navigationScreen() {
     <div>⏱ Est. llegada: 4:01 p.m.</div>
     <b>Alertas y reportes</b>
     ${alerts.map(([h, t]) => `<div class="alert"><b>${h}</b>${t}</div>`).join('')}`;
-        document.getElementById('backBtn').onclick = () => go('routeTraced');
         speak(`Recorrido iniciado. ${alerts[0][1]}`);
 }
 
@@ -368,4 +372,4 @@ function render(name) {
     };
     (map[name] || screenWelcome)();
 }
-render('welcome');
+go('welcome');
