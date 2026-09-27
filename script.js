@@ -355,11 +355,11 @@ function routeTracedScreen() {
     const oName = originName();
     const dName = DESTS[S.destination] ? DESTS[S.destination].name : 'Portal de Usme';
     const tabs = ['bicicleta', 'tm', 'caminata'];
-    const labels = { bicicleta: '🚲 Bicicleta', tm: '🚇 TM/SITP', caminata: '🚶 Caminata' };
+    const labels = { bicicleta: `<div class="icon-mask" style="--icon:url('./icons/pedal_bike.svg')"></div>Bicicleta`, tm: `<div class="icon-mask" style="--icon:url('./icons/train.svg')"></div>TM/SITP`, caminata: `<div class="icon-mask" style="--icon:url('./icons/directions_walk.svg')"></div>Caminata` };
     el.innerHTML = `
     <h1 class="title">Esta es la ruta trazada:</h1>
-    <div class="field">⌖ ${oName}</div>
-    <div class="field">🚩 ${dName}</div>
+    <div class="field"><div class="icon-mask" style="--icon:url('./icons/my_location.svg')"></div> ${oName}</div>
+    <div class="field"><div class="icon-mask" style="--icon:url('./icons/flag.svg')"></div>${dName}</div>
     <div class="tabs">${tabs.map(t => `<div class="tab ${S.transport === t ? 'active' : ''}" data-t="${t}">${labels[t]}</div>`).join('')}</div>
     <div style="display:flex;justify-content:space-between;align-items:center">
         <b>Detalles de la ruta</b>
