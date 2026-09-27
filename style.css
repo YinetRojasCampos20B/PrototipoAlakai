@@ -207,7 +207,7 @@ h3,
     color: var(--paper);
 }
 
-.card:hover .name, .card:hover .addr, .card:hover .rating {
+.card:hover .name, .card:hover .addr, .card:hover .rating, .card:hover .more-details {
     color: var(--paper);
 }
 
@@ -266,6 +266,11 @@ h3,
     gap: 5px;
     flex-wrap: wrap;
     margin-top: 3px
+}
+
+.more-details {
+    font-size: 1.3rem;
+    color: var(--primary);
 }
 
 .tag {

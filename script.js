@@ -5,8 +5,8 @@ const S = {
 };
 const MODE_META = {
     visual: { label: 'Modo de discapacidad visual', icon: `<div class="icon-mask" style="--icon: url('./icons/visibility_off.svg')"></div>`, color: '--visual', colorD: '--visual-d' },
-    auditiva: { label: 'Modo de discapacidad auditiva', icon: '👂', color: '--auditiva', colorD: '--auditiva-d' },
-    fisica: { label: 'Modo de discapacidad física', icon: '♿', color: '--fisica', colorD: '--fisica-d' }
+    auditiva: { label: 'Modo de discapacidad auditiva', icon: `<div class="icon-mask" style="--icon: url('./icons/hearing_disabled.svg')"></div>`, color: '--auditiva', colorD: '--auditiva-d' },
+    fisica: { label: 'Modo de discapacidad física', icon: `<div class="icon-mask" style="--icon: url('./icons/wheelchair.svg')"></div>`, color: '--fisica', colorD: '--fisica-d' }
 };
 const PLACES = {
     uval: {
@@ -200,7 +200,7 @@ function placeCard(id, place, forOrigin) {
         <div class="addr">${place.addr}</div>
         <div class="tags">${tags}</div>
     </div>
-    <div style="font-size:1.3rem;color:var(--primary)">＋</div>
+    <div class="more-details">＋</div>
     </div>`;
 }
 
