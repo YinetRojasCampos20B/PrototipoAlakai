@@ -310,7 +310,8 @@ h3,
 
 .btn {
     border: none;
-    border-radius: 999px;
+    border-radius: 100px;
+    box-shadow: 0 5px 20px var(--primary-d);
     padding: 13px;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
