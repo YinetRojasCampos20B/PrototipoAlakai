@@ -601,3 +601,8 @@ h3,
 .modebtn .ico img {
     width: 35px;
 }
+
+#leafletMap, #leafletNavMap {
+    height: 210px;
+    border-radius: 16px;
+}

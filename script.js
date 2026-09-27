@@ -18,7 +18,8 @@ const PLACES = {
         },
         reviews: [['Terrible lugar para vivir', 'Esperaba que este conjunto tuviera buenas rampas, pero hasta eso es precario aquí.', 2.0],
         ['No visitar ni mudarse aquí', 'Hay mucha inseguridad en el lugar.', 1.0],
-        ['Cajas de fósforos', 'Ambiente de comunidad, pero la administración no ayuda a quienes somos ciegos.', 3.5]]
+        ['Cajas de fósforos', 'Ambiente de comunidad, pero la administración no ayuda a quienes somos ciegos.', 3.5]],
+        coords: [4.4975, -74.1210]
     },
     llano: {
         name: 'Parque Puerta al Llano', addr: 'Kr 10 este #105-990 Sur', rating: 3.5, icon: '<img src="./icons/forest.svg"></img>',
@@ -27,7 +28,8 @@ const PLACES = {
             auditiva: [['Información en LSC', 'ok'], ['Percepción de inseguridad', 'warn']],
             fisica: [['Subidas fatigantes', 'bad'], ['Rebajes en aceras', 'ok']]
         },
-        reviews: [['Buen espacio verde', 'Aunque tiene subidas exigentes, las aceras tienen buenos rebajes.', 3.5]]
+        reviews: [['Buen espacio verde', 'Aunque tiene subidas exigentes, las aceras tienen buenos rebajes.', 3.5]],
+        coords: [4.5050, -74.1155]
     },
     d1: {
         name: 'D1 Chicó Sur', addr: 'Kr 5 #84-111 Sur', rating: 4.0, icon: '<img src="./icons/store.svg"></img>',
@@ -36,7 +38,8 @@ const PLACES = {
             auditiva: [['Percepción de inseguridad', 'warn'], ['Falta de información en LSC', 'bad']],
             fisica: [['Percepción de inseguridad', 'warn'], ['Rampas en buen estado', 'ok']]
         },
-        reviews: [['Buena atención', 'El personal siempre ayuda, aunque falta señalización accesible.', 4.0]]
+        reviews: [['Buena atención', 'El personal siempre ayuda, aunque falta señalización accesible.', 4.0]],
+        coords: [4.5720, -74.1350]
     },
     mery: {
         name: 'Tienda Doña Mery', addr: 'Tv 89 Sur #2-2 Este', rating: 4.8, icon: '<img src="./icons/store.svg"></img>',
@@ -45,7 +48,8 @@ const PLACES = {
             auditiva: [['Personal amable', 'ok'], ['Información en LSC', 'ok']],
             fisica: [['Rampas intermitentes', 'warn'], ['Personal amable', 'ok']]
         },
-        reviews: [['Excelente trato', 'Siempre dispuestos a ayudar, un ejemplo de accesibilidad.', 4.8]]
+        reviews: [['Excelente trato', 'Siempre dispuestos a ayudar, un ejemplo de accesibilidad.', 4.8]],
+        coords: [4.5030, -74.1140]
     },
     brisas: {
         name: 'Restaurante Brisas del Llano', addr: 'Tv 89 Sur #2-2 Este', rating: 4.4, icon: '<img src="./icons/restaurant.svg"></img>',
@@ -54,7 +58,8 @@ const PLACES = {
             auditiva: [['Información en LSC', 'ok'], ['Personal amable', 'ok']],
             fisica: [['Caminos discontinuos', 'warn'], ['Personal amable', 'ok']]
         },
-        reviews: [['Muy buen servicio', 'La comida y el trato son excelentes, el acceso mejorable.', 4.4]]
+        reviews: [['Muy buen servicio', 'La comida y el trato son excelentes, el acceso mejorable.', 4.4]],
+        coords: [4.5035, -74.1145]
     }
 };
 const DESTS = {
@@ -66,7 +71,7 @@ const DESTS = {
             fisica: [['Rebajes en aceras', 'ok'], ['Percepción de inseguridad', 'warn']]
         },
         reviews: [['Portal execrable', 'Los buses se demoran mucho, en especial el B72.', 2.0],
-        ['Excelente servicio', 'Tuve inconvenientes para localizar el servicio 3-14 y un guía me ayudó a llegar.', 4.5]]
+        ['Excelente servicio', 'Tuve inconvenientes para localizar el servicio 3-14 y un guía me ayudó a llegar.', 4.5]],
     },
     unal: {
         name: 'Universidad Nacional', addr: 'Cra 45 #26-85', rating: 4.7, icon: '🎓',
@@ -75,7 +80,8 @@ const DESTS = {
             auditiva: [['Información en LSC', 'ok'], ['Personal amable', 'ok']],
             fisica: [['Rampas en buen estado', 'ok'], ['Personal amable', 'ok']]
         },
-        reviews: [['Campus accesible', 'Muy buena señalización e infraestructura para todo tipo de discapacidad.', 4.7]]
+        reviews: [['Campus accesible', 'Muy buena señalización e infraestructura para todo tipo de discapacidad.', 4.7]],
+        coords: [4.4770, -74.1265]
     },
     tunal: {
         name: 'Hospital El Tunal', addr: 'Carrera 20 N° 47B 35 Sur', rating: 3.7, icon: '⛑',
@@ -84,7 +90,8 @@ const DESTS = {
             auditiva: [['Percepción de inseguridad', 'warn'], ['Trato hostil', 'bad']],
             fisica: [['Caminos discontinuos', 'warn'], ['Personal amable', 'ok']]
         },
-        reviews: [['Atención regular', 'El personal ayuda pero la señalización accesible es escasa.', 3.7]]
+        reviews: [['Atención regular', 'El personal ayuda pero la señalización accesible es escasa.', 3.7]],
+        coords: [4.6387, -74.0838]
     },
     bolivar: {
         name: 'Parque Simón Bolívar', addr: 'Av Carrera 68 #63-13', rating: 4.8, icon: '<img src="./icons/forest.svg"></img>',
@@ -93,7 +100,8 @@ const DESTS = {
             auditiva: [['Información en LSC', 'ok'], ['Personal amable', 'ok']],
             fisica: [['Rampas en buen estado', 'ok'], ['Caminos discontinuos', 'warn']]
         },
-        reviews: [['Espacio muy incluyente', 'Amplio, accesible y con personal atento.', 4.8]]
+        reviews: [['Espacio muy incluyente', 'Amplio, accesible y con personal atento.', 4.8]],
+        
     },
     concentrix: {
         name: 'Concentrix Empresarial', addr: 'Cl 93 #11A-11', rating: 3.6, icon: '💼',
@@ -102,7 +110,8 @@ const DESTS = {
             auditiva: [['Personal amable', 'ok'], ['Información en LSC', 'ok']],
             fisica: [['Rampas inexistentes', 'bad'], ['Caminos continuos', 'ok']]
         },
-        reviews: [['Falta mejorar accesibilidad', 'El edificio necesita más ajustes razonables.', 3.6]]
+        reviews: [['Falta mejorar accesibilidad', 'El edificio necesita más ajustes razonables.', 3.6]],
+        coords: [4.5729, -74.1297]
     },
     oro: {
         name: 'Museo del Oro', addr: 'Cra. 6 #15-88', rating: 4.2, icon: '🏛',
@@ -111,7 +120,8 @@ const DESTS = {
             auditiva: [['Información en LSC', 'ok'], ['Percepción de inseguridad', 'warn']],
             fisica: [['Rampas en buen estado', 'ok'], ['Rebajes en aceras', 'ok']]
         },
-        reviews: [['Muy recomendado', 'Un museo pensado para todo tipo de visitante.', 4.2]]
+        reviews: [['Muy recomendado', 'Un museo pensado para todo tipo de visitante.', 4.2]],
+    coords: [4.6584, -74.0937]
     }
 };
 const ROUTE = {
@@ -148,6 +158,8 @@ function speak(text) {
 }
 
 S.history = [];
+let routeMapInstance = null;
+let navMapInstance = null;
 
 function go(screen, announce) {
     S.history.push(screen);
@@ -307,34 +319,31 @@ function routeTracedScreen() {
     document.getElementById('startBtn').onclick = () => go('navigation', 'Iniciando recorrido. Te guiaré durante todo el trayecto.');
     const body = document.getElementById('routeBody');
     if (S.routeView === 'map') {
-        body.innerHTML = `<div class="map">
-    <div class="pin" style="left:22%;top:12%">A</div>
-    <div class="route-line"></div>
-    <div class="pin" style="left:60%;top:80%;background:var(--primary-d)">B</div>
-    <div class="zoom"><button id="zin">+</button><button id="zout">−</button></div>
-    </div>
+    body.innerHTML = `<div id="leafletMap"></div>
     <div class="stat3">
     <div class="stat"><b>${ROUTE.distance}</b><span>Distancia</span></div>
     <div class="stat"><b>${ROUTE.time}</b><span>Tiempo</span></div>
     <div class="stat"><b>${ROUTE.elev}</b><span>Elevación</span></div>
     </div>`;
-        setTimeout(() => {
-            const m = body.querySelector('.map');
-            const zin = document.getElementById('zin'), zout = document.getElementById('zout');
-            if (zin) zin.onclick = () => { m.style.transform = 'scale(1.08)'; speak('Acercando mapa.'); };
-            if (zout) zout.onclick = () => { m.style.transform = 'scale(1)'; speak('Alejando mapa.'); };
-        }, 0);
-    } else {
-        body.innerHTML = `
-    <div class="stat3">
-    <div class="stat"><b>${ROUTE.distance}</b><span>Distancia</span></div>
-    <div class="stat"><b>${ROUTE.time}</b><span>Tiempo</span></div>
-    <div class="stat"><b>${ROUTE.elev}</b><span>Elevación</span></div>
-    </div>
-    <div class="steplist">${ROUTE.steps.map((s, i) => `
-    <div class="step"><div><div class="dot"></div>${i < ROUTE.steps.length - 1 ? '<div class=\"line\"></div>' : ''}</div>
-    <div class="txt"><b>${s[0]}</b><p>${s[1]}</p></div></div>`).join('')}</div>`;
-    }
+    setTimeout(() => {
+        const origin = PLACES[S.origin] ? PLACES[S.origin].coords : [4.4975, -74.1210];
+        const dest = DESTS[S.destination] ? DESTS[S.destination].coords : [4.4770, -74.1265];
+        const profileMap = { bicicleta: 'bike', tm: 'driving', caminata: 'foot' };
+        if (routeMapInstance) { routeMapInstance.remove(); routeMapInstance = null; }
+        routeMapInstance = L.map('leafletMap').setView(origin, 14);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(routeMapInstance);
+        L.Routing.control({
+            waypoints: [L.latLng(...origin), L.latLng(...dest)],
+            lineOptions: { styles: [{ color: 'var(--primary-d)', weight: 5 }] },
+            router: L.Routing.osrmv1({ profile: profileMap[S.transport] || 'foot' }),
+            routeWhileDragging: false,
+            addWaypoints: false,
+            show: false
+        }).addTo(routeMapInstance);
+    }, 0);
+}
     speak(`Ruta de ${oName} a ${dName}. Distancia ${ROUTE.distance}, tiempo estimado ${ROUTE.time}.`);
 }
 
@@ -345,19 +354,34 @@ function navigationScreen() {
     const dName = DESTS[S.destination] ? DESTS[S.destination].name : 'Portal de Usme';
     const alerts = S.mode === 'fisica' ? ALERTS_FISICA : ALERTS_VISUAL;
     el.innerHTML = `
-    <div class="field">⌖ ${oName}</div>
-    <div class="field">🚩 ${dName}</div>
-    <div><b>Salida: ${oName}</b><p style="font-size:.78rem;color:#666;margin:2px 0">${ROUTE.steps[0][1]}</p></div>
-    <div class="map">
-        <div class="pin" style="left:45%;top:20%;background:#666">👥</div>
-        <div class="pin" style="left:70%;top:52%;background:var(--accent)">⚠</div>
-        <div class="pin" style="left:60%;top:80%">➤</div>
-        <div class="zoom"><button>+</button><button>−</button></div>
-    </div>
-    <div>⏱ Est. llegada: 4:01 p.m.</div>
-    <b>Alertas y reportes</b>
-    ${alerts.map(([h, t]) => `<div class="alert"><b>${h}</b>${t}</div>`).join('')}`;
-        speak(`Recorrido iniciado. ${alerts[0][1]}`);
+<div class="field">⌖ ${oName}</div>
+<div class="field">🚩 ${dName}</div>
+<div><b>Salida: ${oName}</b><p style="font-size:.78rem;color:#666;margin:2px 0">${ROUTE.steps[0][1]}</p></div>
+<div id="leafletNavMap"></div>
+<div>⏱ Est. llegada: 4:01 p.m.</div>
+<b>Alertas y reportes</b>
+${alerts.map(([h, t]) => `<div class="alert"><b>${h}</b>${t}</div>`).join('')}`;
+    speak(`Recorrido iniciado. ${alerts[0][1]}`);
+
+    setTimeout(() => {
+        const origin = PLACES[S.origin] ? PLACES[S.origin].coords : [4.4975, -74.1210];
+        const dest = DESTS[S.destination] ? DESTS[S.destination].coords : [4.4770, -74.1265];
+        if (navMapInstance) { navMapInstance.remove(); navMapInstance = null; }
+        navMapInstance = L.map('leafletNavMap').setView(origin, 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(navMapInstance);
+        L.marker(origin).addTo(navMapInstance);
+        L.Routing.control({
+            waypoints: [L.latLng(...origin), L.latLng(...dest)],
+            lineOptions: { styles: [{ color: 'var(--primary-d)', weight: 5 }] },
+            router: L.Routing.osrmv1({ profile: 'foot' }),
+            routeWhileDragging: false,
+            addWaypoints: false,
+            show: false,
+            createMarker: () => null
+        }).addTo(navMapInstance);
+    }, 0);
 }
 
 /* ---------- router ---------- */
@@ -373,3 +397,26 @@ function render(name) {
     (map[name] || screenWelcome)();
 }
 go('welcome');
+
+
+function initMap(originCoords, destCoords) {
+    const map = L.map('map').setView(originCoords, 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.Routing.control({
+        waypoints: [
+            L.latLng(originCoords[0], originCoords[1]),
+            L.latLng(destCoords[0], destCoords[1])
+        ],
+        lineOptions: {
+            styles: [{ color: '#7fa83a', weight: 5 }] // usa tu --primary aquí si quieres
+        },
+        router: L.Routing.osrmv1({ profile: 'foot' }), // 'foot', 'bike' o 'driving'
+        routeWhileDragging: false,
+        addWaypoints: false,
+        createMarker: () => null // oculta los marcadores default si quieres poner los tuyos
+    }).addTo(map);
+}
