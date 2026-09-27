@@ -311,7 +311,6 @@ h3,
 .btn {
     border: none;
     border-radius: 100px;
-    box-shadow: 0 5px 20px var(--primary-d);
     padding: 13px;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
@@ -323,8 +322,13 @@ h3,
     transition: background .2s, transform .12s;
 }
 
+.btn:hover {
+    transition: 0.3s;
+    box-shadow: 0 5px 20px var(--primary-d);
+}
+
 .btn:active {
-    transform: scale(.97)
+    transform: scale(.97);
 }
 
 .btn.ghost {
