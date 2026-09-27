@@ -1,3 +1,15 @@
+/** Activar la voz con la primera interacción en pantalla */
+let voiceUnlocked = false;
+function unlockVoiceOnce() {
+    if (voiceUnlocked) return;
+    voiceUnlocked = true;
+    document.removeEventListener('click', unlockVoiceOnce);
+    document.removeEventListener('keydown', unlockVoiceOnce);
+    speak('Bienvenido a Alakai: el sistema de accesibilidad intuitivo orientado a personas con discapacidad y movilidad reducida. Selecciona tu modo: uno, discapacidad visual. dos, discapacidad auditiva. tres, discapacidad física. También puedes usar el teclado numérico.');
+}
+document.addEventListener('click', unlockVoiceOnce);
+document.addEventListener('keydown', unlockVoiceOnce);
+
 /* ---------- estado ---------- */
 const S = {
     mode: null, voiceOn: true, origin: null, destination: null,
@@ -245,7 +257,6 @@ function screenWelcome() {
         else if (k == '3') chooseMode('fisica');
         else speak('Tecla no asignada a un modo.');
     });
-    speak('Bienvenido a Alakai: el sistema de accesibilidad intuitivo orientado a personas con discapacidad y movilidad reducida. Selecciona tu modo: uno, discapacidad visual. dos, discapacidad auditiva. tres, discapacidad física. También puedes usar el teclado numérico.');
 }
 
 function chooseMode(m) {
