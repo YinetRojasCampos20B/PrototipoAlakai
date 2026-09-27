@@ -268,9 +268,9 @@ function placeDetailScreen() {
         </div>
         <div style="font-size:.75rem;color:#666;margin-left:6px">${p.addr}</div>
         <div class="tags" style="margin-left:6px">${tags}</div>
-        <h3 style="margin:4px 0 -4px">Detalles del lugar</h3>
+        <h3 style="margin:4px 0 -4px; color: var(--primary-d)">Detalles del lugar</h3>
         <p style="font-size:.8rem;color:#555;margin:0">Aquí va una descripción de los detalles del lugar.</p>
-        <h3 style="margin:6px 0 -4px">Reportes de la comunidad</h3>
+        <h3 style="margin:6px 0 -4px; color: var(--primary-d)">Reportes de la comunidad</h3>
         <div class="searchbox"><input placeholder="Escribe un reporte de este lugar..."> ➤</div>
         ${p.reviews.map(([t, d, r]) => `<div class="review"><b>${t} <span class="rating">★ ${r}</span></b><p>${d}</p></div>`).join('')}
         <button class="btn" id="setBtn">Establecer punto de ${isOrigin ? 'inicio' : 'destino'}</button>`;

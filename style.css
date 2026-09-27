@@ -103,6 +103,7 @@ h3,
 }
 
 .screen {
+    font-family: 'Poppins', sans-serif;
     padding: 14px 18px 22px;
     min-height: 560px;
     display: flex;
@@ -476,6 +477,8 @@ h3,
 }
 
 .review b {
+    color: var(--primary-d);
+    font-family: 'Poppins', sans-serif;
     font-size: .85rem
 }
 
