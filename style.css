@@ -354,6 +354,12 @@ h3,
     border: 2px solid var(--primary)
 }
 
+#finishBtn .icon-mask {
+    width: 25px;
+    height: 15px;
+    background-color: var(--paper);
+}
+
 .tabs {
     display: flex;
     gap: 8px
