@@ -263,7 +263,9 @@ function placeListScreen(kind) {
     el.innerHTML = `
     <h1 class="title">¿${isOrigin ? 'Desde dónde vas a iniciar' : 'Cuál será el punto de destino'} tu recorrido?</h1>
     <div class="searchbox"><div class="icon-mask" style="--icon: url('./icons/search.svg')"></div><input placeholder="Busca tu ${isOrigin ? 'inicio' : 'destino'}"></div>
-    ${isOrigin ? `<div class="field ${S.origin === 'custom' ? 'selected' : ''}" id="useMyLocation" style="cursor:pointer"><img id="myLocation" src="./icons/my_location.svg"></img> Usar mi ubicación precisa</div>` : ''}    ${Object.entries(source).map(([id, p]) => placeCard(id, p, isOrigin)).join('')}
+    ${isOrigin ? `<div class="field ${S.origin === 'custom' ? 'selected' : ''}" id="useMyLocation" style="cursor:pointer"><img id="myLocation" src="./icons/my_location.svg"></img> Usar mi ubicación precisa</div>` : ''}
+    ${Object.entries(source).map(([id, p]) => placeCard(id, p, isOrigin)).join('')}
+    ${S.mode === 'visual' ? `<div class="keypad">${Object.keys(source).map((id, i) => `<button data-place-key="${i + 1}">${i + 1}</button>`).join('')}</div>` : ''}
     <button class="btn" id="continueBtn">${isOrigin ? 'Seguir con el punto de destino' : 'Trazar rutas disponibles'}</button>`;
         el.querySelectorAll('.card').forEach(c => c.onclick = () => {
             S.comingFrom = kind;
@@ -281,21 +283,28 @@ function placeListScreen(kind) {
     };
     const locBtn = document.getElementById('useMyLocation');
     if (locBtn) locBtn.onclick = getMyPreciseLocation;
-    const intro = isOrigin ? '¿Desde dónde vas a iniciar tu recorrido? Estas son tus opciones:' : '¿Cuál será el punto de destino? Estas son tus opciones:';
+    const base = isOrigin ? '¿Desde dónde vas a iniciar tu recorrido? Estas son tus opciones:' : '¿Cuál será el punto de destino? Estas son tus opciones:';
+    const intro = (S.pendingAnnounce ? S.pendingAnnounce + ' ' : '') + base;
+    S.pendingAnnounce = '';
     announcePlaces(source, intro);
     if (S.mode === 'visual') {
-    const ids = Object.keys(source);
-    document.onkeydown = (e) => {
-        const n = parseInt(e.key);
-        if (!n || n < 1 || n > ids.length) return;
-        const id = ids[n - 1];
-        const place = source[id];
-        speak(`${place.name}. Oprima ${n}${n} para detallar los reportes del lugar. Si desea seleccionarlo, presione ${n} una sola vez.`);
-        S.comingFrom = kind;
-        S.selectedPlace = id;
-        go('placeDetail', null);
-    };
-}
+        const ids = Object.keys(source);
+        const handleKey = (n) => {
+            if (!n || n < 1 || n > ids.length) return;
+            const id = ids[n - 1];
+            const place = source[id];
+            speak(`${place.name}. Oprima ${n}${n} para detallar los reportes del lugar. Si desea seleccionarlo, presione ${n} una sola vez.`);
+            S.comingFrom = kind;
+            S.selectedPlace = id;
+            go('placeDetail', null);
+        };
+        document.onkeydown = (e) => handleKey(parseInt(e.key));
+        el.querySelectorAll('[data-place-key]').forEach(b => {
+            b.onclick = () => handleKey(parseInt(b.dataset.placeKey));
+        });
+    } else {
+        document.onkeydown = null;
+    }
 }
 
 function placeCard(id, place, isOrigin) {
