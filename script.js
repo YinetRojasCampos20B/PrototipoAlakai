@@ -360,6 +360,25 @@ function placeDetailScreen() {
     speak(`${p.name}, calificación ${p.rating} estrellas. ${p.addr}.`);
 }
 
+function finishTrip() {
+    speak('Recorrido finalizado. Gracias por usar Alakai.');
+    if (navMapInstance) { 
+        navMapInstance.remove(); 
+        navMapInstance = null; 
+    }
+    if (routeMapInstance) { 
+        routeMapInstance.remove(); 
+        routeMapInstance = null; 
+    }
+    S.origin = null;
+    S.destination = null;
+    S.customOrigin = null;
+    S.routeView = 'map';
+    S.transport = 'bicicleta';
+    S.history = [];
+    go('welcome');
+}
+
 function getMyPreciseLocation() {
     speak('Buscando tu ubicación precisa.');
     if (!navigator.geolocation) {
@@ -472,8 +491,9 @@ function navigationScreen() {
     <div id="leafletNavMap"></div>
     <div>⏱ Est. llegada: 4:01 p.m.</div>
     <b style="color:var(--primary-d);">Alertas y reportes</b>
-    ${alerts.map(([h, t]) => `<div class="alert"><b>${h}</b>${t}</div>`).join('')}`;
-        speak(`Recorrido iniciado. Estas son las alertas cercanas: ${alerts[0][1]}`);
+    ${alerts.map(([h, t]) => `<div class="alert"><b>${h}</b>${t}</div>`).join('')}
+    <button class="btn" id="finishBtn"> <div class="icon-mask" style="--icon: url('./icons/check_circle.svg')"></div>Finalizar recorrido</button>`;
+    speak(`Recorrido iniciado. Estas son las alertas cercanas: ${alerts[0][1]}`);
 
     setTimeout(() => {
         const origin = originCoords();
@@ -494,6 +514,8 @@ function navigationScreen() {
             createMarker: () => null
         }).addTo(navMapInstance);
     }, 0);
+    document.getElementById('finishBtn').onclick = finishTrip;
+
 }
 
 /* ---------- router ---------- */
