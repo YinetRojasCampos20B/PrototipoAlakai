@@ -232,10 +232,10 @@ function screenWelcome() {
     <button class="modebtn" id="btnDiscAuditiva" style="background:var(--auditiva)" data-mode="auditiva"><span class="ico"><img src="/icons/hearing_disabled.svg" alt="Oreja indicando discapacidad auditiva"></span>Discapacidad auditiva</button>
     <button class="modebtn" id="btnDiscFisica"style="background:var(--fisica)" data-mode="fisica"><span class="ico"><img src="/icons/wheelchair.svg" alt="Persona en silla de ruedas discapacidad física"></span>Discapacidad física</button>
     <div class="hint">También puedes marcar en el teclado: 1 visual - 2 auditiva - 3 física</div>
-<div class="keypad">
-    ${[1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'].map(n => `<button data-key="${n}">${n}</button>`).join('')}
-</div>
-<footer class="copy">@2026 Todos los derechos reservados</footer>`;
+    <div class="keypad">
+        ${[1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'].map(n => `<button data-key="${n}">${n}</button>`).join('')}
+    </div>
+    <footer class="copy">@2026 Todos los derechos reservados</footer>`;
     el.querySelectorAll('.modebtn').forEach(b => b.onclick = () => chooseMode(b.dataset.mode));
     el.querySelectorAll('[data-key]').forEach(b => b.onclick = () => {
         const k = b.dataset.key;
