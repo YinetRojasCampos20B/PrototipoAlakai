@@ -473,7 +473,7 @@ function navigationScreen() {
     <div>⏱ Est. llegada: 4:01 p.m.</div>
     <b>Alertas y reportes</b>
     ${alerts.map(([h, t]) => `<div class="alert"><b>${h}</b>${t}</div>`).join('')}`;
-        speak(`Recorrido iniciado. ${alerts[0][1]}`);
+        speak(`Recorrido iniciado. Estas son las alertas cercanas: ${alerts[0][1]}`);
 
     setTimeout(() => {
         const origin = originCoords();
