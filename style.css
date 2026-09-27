@@ -350,10 +350,21 @@ h3,
     background: #fff
 }
 
+.tab .icon-mask {
+    width: 14px;
+    height: 10px;
+    flex-shrink: 0;
+}
+
 .tab.active {
     background: var(--primary);
-    color: #fff
+    color: var(--paper);
 }
+
+.tab.active .icon-mask {
+    background-color: var(--paper);
+}
+
 
 .map {
     height: 210px;
