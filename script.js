@@ -299,7 +299,7 @@ function placeDetailScreen() {
     const tags = p.tags[S.mode].map(([t, c]) => `<span class="tag ${c}">${t}</span>`).join('');
     el.innerHTML = `
         <div class="field" style="justify-content:space-between">
-            <span>📍 ${p.name} <span class="rating">★ ${p.rating}</span></span>
+            <span><div class="icon-mask" style="--icon:url('./icons/explore_nearby.svg')"></div> ${p.name} <span class="rating">★ ${p.rating}</span></span>
         </div>
         <div style="font-size:.75rem;color:#666;margin-left:6px">${p.addr}</div>
         <div class="tags" style="margin-left:6px">${tags}</div>
