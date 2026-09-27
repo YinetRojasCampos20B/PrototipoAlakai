@@ -217,7 +217,7 @@ h3,
 }
 
 .card.selected {
-    background: color-mix(in srgb, var(--primary) 18%, white)
+    background: color-mix(in srgb, var(--primary) 35%, rgba(255, 255, 255, 0));
 }
 
 .card .icon {
