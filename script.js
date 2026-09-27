@@ -139,9 +139,9 @@ const ROUTE = {
         ['Llegada: Portal de Usme', '']
     ]
 };
-const ALERTS_VISUAL = [['Hoy, 3:33 p.m. — a 50 mts', 'Calle 107A Sur con alta afluencia de personas.'],
+const ALERTS_VISUAL = [['Hoy, 3:33 p.m. - a 50 mts', 'Calle 107A Sur con alta afluencia de personas.'],
 ['Hoy, 2:15 p.m. — a 300 mts', 'Manifestación bloqueando carril sur-norte en Tv 7 Este.']];
-const ALERTS_FISICA = [['Hoy, 3:33 p.m. — a 50 mts', 'Calle 107A Sur con pendiente inclinada mayor a 20° grados.'],
+const ALERTS_FISICA = [['Hoy, 3:33 p.m. - a 50 mts', 'Calle 107A Sur con pendiente inclinada mayor a 20° grados.'],
 ['Hoy, 2:15 p.m. — a 300 mts', 'Tramo de Tv 7 Este sin acera pavimentada.']];
 
 /* ---------- UTILIDADES ---------- */
@@ -420,8 +420,8 @@ function navigationScreen() {
     const dName = DESTS[S.destination] ? DESTS[S.destination].name : 'Portal de Usme';
     const alerts = S.mode === 'fisica' ? ALERTS_FISICA : ALERTS_VISUAL;
     el.innerHTML = `
-    <div class="field">⌖ ${oName}</div>
-    <div class="field">🚩 ${dName}</div>
+    <div class="field"><div class="icon-mask" style="--icon:url('./icons/my_location.svg')"></div>${oName}</div>
+    <div class="field"><div class="icon-mask" style="--icon:url('./icons/flag.svg')"></div> ${dName}</div>
     <div><b>Salida: ${oName}</b><p style="font-size:.78rem;color:#666;margin:2px 0">${ROUTE.steps[0][1]}</p></div>
     <div id="leafletNavMap"></div>
     <div>⏱ Est. llegada: 4:01 p.m.</div>
