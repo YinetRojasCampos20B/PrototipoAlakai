@@ -4,6 +4,8 @@ const S = {
     transport: 'bicicleta', routeView: 'map', selectedPlace: null, comingFrom: 'origin'
 };
 
+S.customOrigin = null;
+
 const MODE_META = {
     visual: { label: 'Modo de discapacidad visual', icon: `<div class="icon-mask" style="--icon: url('./icons/visibility_off.svg')"></div>`, color: '--visual', colorD: '--visual-d' },
     auditiva: { label: 'Modo de discapacidad auditiva', icon: `<div class="icon-mask" style="--icon: url('./icons/hearing_disabled.svg')"></div>`, color: '--auditiva', colorD: '--auditiva-d' },
@@ -20,7 +22,7 @@ const PLACES = {
         reviews: [['Terrible lugar para vivir', 'Esperaba que este conjunto tuviera buenas rampas, pero hasta eso es precario aquí.', 2.0],
         ['No visitar ni mudarse aquí', 'Hay mucha inseguridad en el lugar.', 1.0],
         ['Cajas de fósforos', 'Ambiente de comunidad, pero la administración no ayuda a quienes somos ciegos.', 3.5]],
-        coords: [4.4975, -74.1210]
+        coords: [4.4866, -74.1036]
     },
     llano: {
         name: 'Parque Puerta al Llano', addr: 'Kr 10 este #105-990 Sur', rating: 3.5, icon: '<img src="./icons/forest.svg"></img>',
@@ -30,7 +32,7 @@ const PLACES = {
             fisica: [['Subidas fatigantes', 'bad'], ['Rebajes en aceras', 'ok']]
         },
         reviews: [['Buen espacio verde', 'Aunque tiene subidas exigentes, las aceras tienen buenos rebajes.', 3.5]],
-        coords: [4.5050, -74.1155]
+        coords: [4.489044, -74.098970]
     },
     d1: {
         name: 'D1 Chicó Sur', addr: 'Kr 5 #84-111 Sur', rating: 4.0, icon: '<img src="./icons/store.svg"></img>',
@@ -40,7 +42,7 @@ const PLACES = {
             fisica: [['Percepción de inseguridad', 'warn'], ['Rampas en buen estado', 'ok']]
         },
         reviews: [['Buena atención', 'El personal siempre ayuda, aunque falta señalización accesible.', 4.0]],
-        coords: [4.5720, -74.1350]
+        coords: [4.5050, -74.1044]
     },
     mery: {
         name: 'Tienda Doña Mery', addr: 'Tv 89 Sur #2-2 Este', rating: 4.8, icon: '<img src="./icons/store.svg"></img>',
@@ -50,7 +52,7 @@ const PLACES = {
             fisica: [['Rampas intermitentes', 'warn'], ['Personal amable', 'ok']]
         },
         reviews: [['Excelente trato', 'Siempre dispuestos a ayudar, un ejemplo de accesibilidad.', 4.8]],
-        coords: [4.5030, -74.1140]
+        coords: [4.485870, -74.098090]
     },
     brisas: {
         name: 'Restaurante Brisas del Llano', addr: 'Tv 89 Sur #2-2 Este', rating: 4.4, icon: '<img src="./icons/restaurant.svg"></img>',
@@ -60,7 +62,7 @@ const PLACES = {
             fisica: [['Caminos discontinuos', 'warn'], ['Personal amable', 'ok']]
         },
         reviews: [['Muy buen servicio', 'La comida y el trato son excelentes, el acceso mejorable.', 4.4]],
-        coords: [4.5035, -74.1145]
+        coords: [4.486303, -74.104433]
     }
 };
 const DESTS = {
@@ -73,6 +75,7 @@ const DESTS = {
         },
         reviews: [['Portal execrable', 'Los buses se demoran mucho, en especial el B72.', 2.0],
         ['Excelente servicio', 'Tuve inconvenientes para localizar el servicio 3-14 y un guía me ayudó a llegar.', 4.5]],
+        coords: [4.5320, -74.1196]
     },
     unal: {
         name: 'Universidad Nacional', addr: 'Cra 45 #26-85', rating: 4.7, icon: '🎓',
@@ -82,7 +85,7 @@ const DESTS = {
             fisica: [['Rampas en buen estado', 'ok'], ['Personal amable', 'ok']]
         },
         reviews: [['Campus accesible', 'Muy buena señalización e infraestructura para todo tipo de discapacidad.', 4.7]],
-        coords: [4.4770, -74.1265]
+        coords: [4.6365, -74.0829]
     },
     tunal: {
         name: 'Hospital El Tunal', addr: 'Carrera 20 N° 47B 35 Sur', rating: 3.7, icon: '⛑',
@@ -92,7 +95,7 @@ const DESTS = {
             fisica: [['Caminos discontinuos', 'warn'], ['Personal amable', 'ok']]
         },
         reviews: [['Atención regular', 'El personal ayuda pero la señalización accesible es escasa.', 3.7]],
-        coords: [4.6387, -74.0838]
+        coords: [4.5714, -74.1283]
     },
     bolivar: {
         name: 'Parque Simón Bolívar', addr: 'Av Carrera 68 #63-13', rating: 4.8, icon: '<img src="./icons/forest.svg"></img>',
@@ -102,6 +105,7 @@ const DESTS = {
             fisica: [['Rampas en buen estado', 'ok'], ['Caminos discontinuos', 'warn']]
         },
         reviews: [['Espacio muy incluyente', 'Amplio, accesible y con personal atento.', 4.8]],
+        coords: [4.6580, -74.0934]
         
     },
     concentrix: {
@@ -112,7 +116,7 @@ const DESTS = {
             fisica: [['Rampas inexistentes', 'bad'], ['Caminos continuos', 'ok']]
         },
         reviews: [['Falta mejorar accesibilidad', 'El edificio necesita más ajustes razonables.', 3.6]],
-        coords: [4.5729, -74.1297]
+        coords: [4.6748, -74.0484]
     },
     oro: {
         name: 'Museo del Oro', addr: 'Cra. 6 #15-88', rating: 4.2, icon: '🏛',
@@ -122,7 +126,7 @@ const DESTS = {
             fisica: [['Rampas en buen estado', 'ok'], ['Rebajes en aceras', 'ok']]
         },
         reviews: [['Muy recomendado', 'Un museo pensado para todo tipo de visitante.', 4.2]],
-    coords: [4.6584, -74.0937]
+    coords: [4.6018, -74.0718]
     }
 };
 const ROUTE = {
@@ -248,7 +252,7 @@ function placeListScreen(kind) {
     el.innerHTML = `
     <h1 class="title">¿${isOrigin ? 'Desde dónde vas a iniciar' : 'Cuál será el punto de destino'} tu recorrido?</h1>
     <div class="searchbox"><div class="icon-mask" style="--icon: url('./icons/search.svg')"></div><input placeholder="Busca tu ${isOrigin ? 'inicio' : 'destino'}"></div>
-    ${isOrigin ? '<div class="field"><img id="myLocation" src="./icons/my_location.svg"></img> Usar mi ubicación precisa</div>' : ''}
+    ${isOrigin ? '<div class="field" id="useMyLocation" style="cursor:pointer"><img id="myLocation" src="./icons/my_location.svg"></img> Usar mi ubicación precisa</div>' : ''}
     ${Object.entries(source).map(([id, p]) => placeCard(id, p)).join('')}
     <button class="btn" id="continueBtn">${isOrigin ? 'Seguir con el punto de destino' : 'Trazar rutas disponibles'}</button>`;
         el.querySelectorAll('.card').forEach(c => c.onclick = () => {
@@ -265,6 +269,8 @@ function placeListScreen(kind) {
             go('routeTraced', 'Esta es la ruta trazada.');
         }
     };
+    const locBtn = document.getElementById('useMyLocation');
+    if (locBtn) locBtn.onclick = getMyPreciseLocation;
     if (isOrigin) speak('¿Desde dónde vas a iniciar tu recorrido?'); else speak('¿Cuál será el punto de destino?');
 }
 
@@ -294,10 +300,43 @@ function placeDetailScreen() {
     speak(`${p.name}, calificación ${p.rating} estrellas. ${p.addr}.`);
 }
 
+function getMyPreciseLocation() {
+    speak('Buscando tu ubicación precisa.');
+    if (!navigator.geolocation) {
+        speak('Tu navegador no permite compartir ubicación.');
+        return;
+    }
+    navigator.geolocation.getCurrentPosition(
+        (pos) => {
+            const { latitude, longitude, accuracy } = pos.coords;
+            S.customOrigin = { name: 'Mi ubicación actual', coords: [latitude, longitude] };
+            S.origin = 'custom';
+            const msg = accuracy <= 300
+                ? `Ubicación encontrada con un margen de error de ${Math.round(accuracy)} metros.`
+                : `Ubicación encontrada, pero con un margen de error de ${Math.round(accuracy)} metros, mayor al esperado.`;
+            speak(msg);
+            go('searchDestination', '¿Cuál será el punto de destino?');
+        },
+        (err) => {
+            speak('No fue posible obtener tu ubicación. Revisa los permisos del navegador.');
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+}
+
+function originCoords() {
+    if (S.origin === 'custom' && S.customOrigin) return S.customOrigin.coords;
+    return PLACES[S.origin] ? PLACES[S.origin].coords : [4.4975, -74.1210];
+}
+function originName() {
+    if (S.origin === 'custom' && S.customOrigin) return S.customOrigin.name;
+    return PLACES[S.origin] ? PLACES[S.origin].name : 'Conjunto El Uval';
+}
+
 function routeTracedScreen() {
     renderTopbar();
     const el = document.getElementById('screen');
-    const oName = PLACES[S.origin] ? PLACES[S.origin].name : 'Conjunto El Uval';
+    const oName = originName();
     const dName = DESTS[S.destination] ? DESTS[S.destination].name : 'Portal de Usme';
     const tabs = ['bicicleta', 'tm', 'caminata'];
     const labels = { bicicleta: '🚲 Bicicleta', tm: '🚇 TM/SITP', caminata: '🚶 Caminata' };
@@ -327,7 +366,7 @@ function routeTracedScreen() {
     <div class="stat"><b>${ROUTE.elev}</b><span>Elevación</span></div>
     </div>`;
     setTimeout(() => {
-        const origin = PLACES[S.origin] ? PLACES[S.origin].coords : [4.4975, -74.1210];
+        const origin = originCoords();
         const dest = DESTS[S.destination] ? DESTS[S.destination].coords : [4.4770, -74.1265];
         const profileMap = { bicicleta: 'bike', tm: 'driving', caminata: 'foot' };
         if (routeMapInstance) { routeMapInstance.remove(); routeMapInstance = null; }
@@ -351,21 +390,21 @@ function routeTracedScreen() {
 function navigationScreen() {
     renderTopbar();
     const el = document.getElementById('screen');
-    const oName = PLACES[S.origin] ? PLACES[S.origin].name : 'Conjunto El Uval';
+    const oName = originName();
     const dName = DESTS[S.destination] ? DESTS[S.destination].name : 'Portal de Usme';
     const alerts = S.mode === 'fisica' ? ALERTS_FISICA : ALERTS_VISUAL;
     el.innerHTML = `
-<div class="field">⌖ ${oName}</div>
-<div class="field">🚩 ${dName}</div>
-<div><b>Salida: ${oName}</b><p style="font-size:.78rem;color:#666;margin:2px 0">${ROUTE.steps[0][1]}</p></div>
-<div id="leafletNavMap"></div>
-<div>⏱ Est. llegada: 4:01 p.m.</div>
-<b>Alertas y reportes</b>
-${alerts.map(([h, t]) => `<div class="alert"><b>${h}</b>${t}</div>`).join('')}`;
-    speak(`Recorrido iniciado. ${alerts[0][1]}`);
+    <div class="field">⌖ ${oName}</div>
+    <div class="field">🚩 ${dName}</div>
+    <div><b>Salida: ${oName}</b><p style="font-size:.78rem;color:#666;margin:2px 0">${ROUTE.steps[0][1]}</p></div>
+    <div id="leafletNavMap"></div>
+    <div>⏱ Est. llegada: 4:01 p.m.</div>
+    <b>Alertas y reportes</b>
+    ${alerts.map(([h, t]) => `<div class="alert"><b>${h}</b>${t}</div>`).join('')}`;
+        speak(`Recorrido iniciado. ${alerts[0][1]}`);
 
     setTimeout(() => {
-        const origin = PLACES[S.origin] ? PLACES[S.origin].coords : [4.4975, -74.1210];
+        const origin = originCoords();
         const dest = DESTS[S.destination] ? DESTS[S.destination].coords : [4.4770, -74.1265];
         if (navMapInstance) { navMapInstance.remove(); navMapInstance = null; }
         navMapInstance = L.map('leafletNavMap').setView(origin, 15);
