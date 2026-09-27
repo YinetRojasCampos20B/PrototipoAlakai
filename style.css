@@ -158,6 +158,13 @@ h3,
     color: var(--primary-d);
 }
 
+#useMyLocation:hover {
+    transition: 0.2s;
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 5px 20px var(--primary-d);
+}
+
 #myLocation {
     background-color: var(--primary);
     padding: 7px;

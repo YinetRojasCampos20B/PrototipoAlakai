@@ -220,6 +220,7 @@ function placeCard(id, place, forOrigin) {
 }
 
 function screenWelcome() {
+    document.onkeydown = null;
     document.getElementById('topbar').innerHTML = '';
     document.documentElement.style.setProperty('--primary', '#f5811f');
     document.documentElement.style.setProperty('--primary-d', '#c9660f');
@@ -282,6 +283,19 @@ function placeListScreen(kind) {
     if (locBtn) locBtn.onclick = getMyPreciseLocation;
     const intro = isOrigin ? '¿Desde dónde vas a iniciar tu recorrido? Estas son tus opciones:' : '¿Cuál será el punto de destino? Estas son tus opciones:';
     announcePlaces(source, intro);
+    if (S.mode === 'visual') {
+    const ids = Object.keys(source);
+    document.onkeydown = (e) => {
+        const n = parseInt(e.key);
+        if (!n || n < 1 || n > ids.length) return;
+        const id = ids[n - 1];
+        const place = source[id];
+        speak(`${place.name}. Oprima ${n}${n} para detallar los reportes del lugar. Si desea seleccionarlo, presione ${n} una sola vez.`);
+        S.comingFrom = kind;
+        S.selectedPlace = id;
+        go('placeDetail', null);
+    };
+}
 }
 
 function placeCard(id, place, isOrigin) {
@@ -300,6 +314,7 @@ function placeCard(id, place, isOrigin) {
 }
 
 function placeDetailScreen() {
+    document.onkeydown = null;
     const isOrigin = S.comingFrom === 'origin';
     const source = isOrigin ? PLACES : DESTS;
     const p = source[S.selectedPlace];
@@ -359,6 +374,7 @@ function originName() {
 }
 
 function routeTracedScreen() {
+    document.onkeydown = null;
     renderTopbar();
     const el = document.getElementById('screen');
     const oName = originName();
@@ -423,6 +439,7 @@ function routeTracedScreen() {
 }
 
 function navigationScreen() {
+    document.onkeydown = null;
     renderTopbar();
     const el = document.getElementById('screen');
     const oName = originName();
