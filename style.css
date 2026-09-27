@@ -38,11 +38,8 @@ body {
     padding: 28px 12px;
 }
 
-h1,
-h2,
-h3,
-.brand {
-    font-family: 'Stinger', sans-serif
+h1,h2, h3, .brand {
+    font-family: 'Baloo 2', sans-serif
 }
 
 .phone {
@@ -92,7 +89,7 @@ h3,
 .mode-pill {
     border: 5px solid var(--primary);
     color: var(--primary-d);
-    font-family: 'Stinger', sans-serif;
+    font-family: 'Baloo 2', sans-serif;
     font-weight: 900;
     border-radius: 100px;
     padding: 8px 14px;
